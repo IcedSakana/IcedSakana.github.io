@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>向量检索的核心流程：Embedding、索引与召回 | IcedSakana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="介绍向量检索从 Embedding 到索引再到召回排序的基本流程。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="向量检索的核心流程：Embedding、索引与召回">
+  <meta property="og:url" content="https://icedsakana.github.io/2026/05/07/vector-search-core-pipeline/">
+  <meta property="og:site_name" content="IcedSakana 技术学习心得">
+  <meta property="og:description" content="介绍向量检索从 Embedding 到索引再到召回排序的基本流程。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="article:published_time" content="2026-05-07T07:11:00.000Z">
+  <meta property="article:author" content="IcedSakana">
+  <meta name="twitter:card" content="summary">
+  <link rel="alternate" href="/atom.xml" title="IcedSakana 技术学习心得" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+        <div id="banner"></div>
+        <div id="header-outer" class="outer">
+          <div id="header-title" class="inner">
+            <h1 id="logo-wrap"><a href="/" id="logo">IcedSakana</a></h1>
+            <h2 id="subtitle-wrap"><a href="/" id="subtitle">技术学习心得与实践记录</a></h2>
+          </div>
+          <div id="header-inner" class="inner">
+            <nav id="main-nav">
+              <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+              <a class="main-nav-link" href="/">首页</a>
+              <a class="main-nav-link" href="/archives">归档</a>
+              <a class="main-nav-link" href="/categories">专栏</a>
+              <a class="main-nav-link" href="/tags">标签</a>
+              <a class="main-nav-link" href="/about">关于</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <div class="outer">
+        <section id="main">
+          <article class="article article-type-post">
+            <div class="article-meta">
+              <a href="/2026/05/07/vector-search-core-pipeline/" class="article-date">
+                <time datetime="2026-05-07T07:11:00.000Z">2026-05-07</time>
+              </a>
+              <div class="article-category">
+                <a class="article-category-link" href="/categories">AI 与自动化</a>
+              </div>
+            </div>
+            <div class="article-inner">
+              <header class="article-header">
+                <h1 class="article-title">向量检索的核心流程：Embedding、索引与召回</h1>
+              </header>
+              <div class="article-entry">
+                <p>向量检索并不是“把问题丢进去然后自动搜出来”这么简单，它背后通常有一条比较清晰的处理链路：数据向量化、索引构建、查询向量化、近邻召回，以及最终排序。</p>
+
+                <h2>第一步：Embedding</h2>
+                <p>Embedding 的作用是把文本、图片或者代码片段转换成向量。这个过程一般由预训练模型完成，比如文本嵌入模型会把一句话映射成一个高维向量。</p>
+                <p>Embedding 的质量直接影响检索效果，因为后面的所有相似度比较都建立在这个表示之上。</p>
+
+                <h2>第二步：建立索引</h2>
+                <p>如果数据量很大，不可能每次查询都和所有向量逐个比较，所以需要建立索引。常见方式包括：</p>
+                <ul>
+                  <li>Flat：精确检索，结果最准，但速度慢</li>
+                  <li>IVF：先分桶再搜索，提高速度</li>
+                  <li>HNSW：图结构近邻搜索，速度与效果通常较平衡</li>
+                  <li>PQ：通过压缩向量降低存储与计算成本</li>
+                </ul>
+
+                <h2>第三步：查询向量化</h2>
+                <p>当用户输入一个问题后，也需要通过同一个 Embedding 模型把查询转换成向量。这样查询和文档就处于同一个向量空间内，可以直接比较距离。</p>
+
+                <h2>第四步：近邻召回</h2>
+                <p>召回阶段会根据相似度函数找出最接近查询向量的若干条结果。常见的距离度量方式包括余弦相似度、欧氏距离和点积。</p>
+                <p>这个阶段的目标不是做最终排序，而是先快速缩小候选范围。</p>
+
+                <h2>第五步：重排与后处理</h2>
+                <p>在真实系统里，向量召回往往只是第一层。后续还会叠加关键词过滤、元数据过滤、交叉编码器重排或者业务规则排序，让最终结果更准确。</p>
+
+                <h2>在 RAG 中的意义</h2>
+                <p>RAG 系统非常依赖这条链路。只有召回内容足够准，大模型生成的答案才更可靠。也就是说，检索质量本身就是生成质量的上游保障。</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <aside id="sidebar">
+          <div class="widget-wrap">
+            <h3 class="widget-title">相关文章</h3>
+            <div class="widget">
+              <ul class="learning-nav-list">
+                <li><a href="/2026/05/07/what-is-vector-search-engine/">什么是向量检索引擎</a></li>
+                <li><a href="/2026/05/07/vector-search-core-pipeline/">向量检索的核心流程</a></li>
+                <li><a href="/2026/05/07/vector-database-comparison/">常见向量数据库对比</a></li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer id="footer">
+        <div class="outer">
+          <div id="footer-info" class="inner">
+            &copy; 2026 IcedSakana<br>
+            Powered by GitHub Pages
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <nav id="mobile-nav">
+      <a href="/" class="mobile-nav-link">首页</a>
+      <a href="/archives" class="mobile-nav-link">归档</a>
+      <a href="/categories" class="mobile-nav-link">专栏</a>
+      <a href="/tags" class="mobile-nav-link">标签</a>
+      <a href="/about" class="mobile-nav-link">关于</a>
+    </nav>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

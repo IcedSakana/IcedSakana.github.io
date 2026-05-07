@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>什么是向量检索引擎 | IcedSakana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="介绍向量检索引擎的基本概念、应用场景与核心价值。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="什么是向量检索引擎">
+  <meta property="og:url" content="https://icedsakana.github.io/2026/05/07/what-is-vector-search-engine/">
+  <meta property="og:site_name" content="IcedSakana 技术学习心得">
+  <meta property="og:description" content="介绍向量检索引擎的基本概念、应用场景与核心价值。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="article:published_time" content="2026-05-07T07:10:00.000Z">
+  <meta property="article:author" content="IcedSakana">
+  <meta name="twitter:card" content="summary">
+  <link rel="alternate" href="/atom.xml" title="IcedSakana 技术学习心得" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+        <div id="banner"></div>
+        <div id="header-outer" class="outer">
+          <div id="header-title" class="inner">
+            <h1 id="logo-wrap"><a href="/" id="logo">IcedSakana</a></h1>
+            <h2 id="subtitle-wrap"><a href="/" id="subtitle">技术学习心得与实践记录</a></h2>
+          </div>
+          <div id="header-inner" class="inner">
+            <nav id="main-nav">
+              <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+              <a class="main-nav-link" href="/">首页</a>
+              <a class="main-nav-link" href="/archives">归档</a>
+              <a class="main-nav-link" href="/categories">专栏</a>
+              <a class="main-nav-link" href="/tags">标签</a>
+              <a class="main-nav-link" href="/about">关于</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <div class="outer">
+        <section id="main">
+          <article class="article article-type-post">
+            <div class="article-meta">
+              <a href="/2026/05/07/what-is-vector-search-engine/" class="article-date">
+                <time datetime="2026-05-07T07:10:00.000Z">2026-05-07</time>
+              </a>
+              <div class="article-category">
+                <a class="article-category-link" href="/categories">AI 与自动化</a>
+              </div>
+            </div>
+            <div class="article-inner">
+              <header class="article-header">
+                <h1 class="article-title">什么是向量检索引擎</h1>
+              </header>
+              <div class="article-entry">
+                <p>向量检索引擎可以理解为一种“按语义查找内容”的系统。传统搜索更多依赖关键词是否匹配，而向量检索更关注内容在语义层面是否相近。</p>
+                <p>在 AI 应用中，文本、图片、音频甚至代码都可以被模型编码成一组高维数字，这组数字就叫做向量。向量检索引擎的核心任务，就是在大量向量中快速找到“最相似”的那一批结果。</p>
+
+                <h2>为什么需要向量检索</h2>
+                <p>如果只做关键词匹配，用户提问和文档表述不同，就容易搜不到结果。比如用户问“如何提升接口吞吐量”，文档里写的是“服务性能优化”，传统搜索未必能很好命中。</p>
+                <p>向量检索通过比较语义相似度，能够让“意思接近”的内容被召回，因此特别适合知识库问答、RAG、推荐系统和多模态检索。</p>
+
+                <h2>它通常用在哪些场景</h2>
+                <ul>
+                  <li>企业知识库问答</li>
+                  <li>AI Agent 的上下文召回</li>
+                  <li>相似图片、相似商品推荐</li>
+                  <li>代码片段或文档的语义搜索</li>
+                </ul>
+
+                <h2>和传统搜索的区别</h2>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>维度</th>
+                      <th>传统搜索</th>
+                      <th>向量检索</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>匹配方式</td>
+                      <td>关键词</td>
+                      <td>语义相似度</td>
+                    </tr>
+                    <tr>
+                      <td>适合内容</td>
+                      <td>结构化、明确表达</td>
+                      <td>自然语言、多模态内容</td>
+                    </tr>
+                    <tr>
+                      <td>优点</td>
+                      <td>可解释性强、实现成熟</td>
+                      <td>更适合模糊表达和语义检索</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h2>一句话理解</h2>
+                <p>向量检索引擎就是把内容转换成“可计算语义距离”的表示，再从海量数据中快速找出最相近结果的系统。</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <aside id="sidebar">
+          <div class="widget-wrap">
+            <h3 class="widget-title">AI 与自动化</h3>
+            <div class="widget">
+              <ul class="learning-nav-list">
+                <li><a href="/2026/05/07/what-is-vector-search-engine/">什么是向量检索引擎</a></li>
+                <li><a href="/2026/05/07/vector-search-core-pipeline/">向量检索的核心流程</a></li>
+                <li><a href="/2026/05/07/vector-database-comparison/">常见向量数据库对比</a></li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer id="footer">
+        <div class="outer">
+          <div id="footer-info" class="inner">
+            &copy; 2026 IcedSakana<br>
+            Powered by GitHub Pages
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <nav id="mobile-nav">
+      <a href="/" class="mobile-nav-link">首页</a>
+      <a href="/archives" class="mobile-nav-link">归档</a>
+      <a href="/categories" class="mobile-nav-link">专栏</a>
+      <a href="/tags" class="mobile-nav-link">标签</a>
+      <a href="/about" class="mobile-nav-link">关于</a>
+    </nav>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

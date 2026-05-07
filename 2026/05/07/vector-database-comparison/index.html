@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>常见向量数据库与检索方案对比：FAISS、Milvus、pgvector、Weaviate | IcedSakana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="对比几种常见向量检索方案的定位、优势与使用场景。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="常见向量数据库与检索方案对比：FAISS、Milvus、pgvector、Weaviate">
+  <meta property="og:url" content="https://icedsakana.github.io/2026/05/07/vector-database-comparison/">
+  <meta property="og:site_name" content="IcedSakana 技术学习心得">
+  <meta property="og:description" content="对比几种常见向量检索方案的定位、优势与使用场景。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="article:published_time" content="2026-05-07T07:12:00.000Z">
+  <meta property="article:author" content="IcedSakana">
+  <meta name="twitter:card" content="summary">
+  <link rel="alternate" href="/atom.xml" title="IcedSakana 技术学习心得" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+        <div id="banner"></div>
+        <div id="header-outer" class="outer">
+          <div id="header-title" class="inner">
+            <h1 id="logo-wrap"><a href="/" id="logo">IcedSakana</a></h1>
+            <h2 id="subtitle-wrap"><a href="/" id="subtitle">技术学习心得与实践记录</a></h2>
+          </div>
+          <div id="header-inner" class="inner">
+            <nav id="main-nav">
+              <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+              <a class="main-nav-link" href="/">首页</a>
+              <a class="main-nav-link" href="/archives">归档</a>
+              <a class="main-nav-link" href="/categories">专栏</a>
+              <a class="main-nav-link" href="/tags">标签</a>
+              <a class="main-nav-link" href="/about">关于</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <div class="outer">
+        <section id="main">
+          <article class="article article-type-post">
+            <div class="article-meta">
+              <a href="/2026/05/07/vector-database-comparison/" class="article-date">
+                <time datetime="2026-05-07T07:12:00.000Z">2026-05-07</time>
+              </a>
+              <div class="article-category">
+                <a class="article-category-link" href="/categories">AI 与自动化</a>
+              </div>
+            </div>
+            <div class="article-inner">
+              <header class="article-header">
+                <h1 class="article-title">常见向量数据库与检索方案对比：FAISS、Milvus、pgvector、Weaviate</h1>
+              </header>
+              <div class="article-entry">
+                <p>做向量检索时，常见选择并不只有一种。有的适合本地实验，有的适合生产集群部署，有的则适合直接嵌入现有数据库体系中。</p>
+
+                <h2>FAISS</h2>
+                <p>FAISS 是 Meta 推出的高性能向量检索库，更偏底层能力。它适合需要自己掌控索引结构、检索策略和系统集成方式的场景。</p>
+                <p><strong>优点：</strong>性能强、索引类型丰富、适合实验和高性能场景。<br>
+                <strong>缺点：</strong>它本身更像库，而不是完整数据库，工程能力需要自己补。</p>
+
+                <h2>Milvus</h2>
+                <p>Milvus 是面向生产环境的向量数据库，提供集合管理、索引构建、分布式扩展等能力，更适合中大型检索系统。</p>
+                <p><strong>优点：</strong>数据库能力完整，适合服务化与集群部署。<br>
+                <strong>缺点：</strong>部署和维护复杂度比单机库更高。</p>
+
+                <h2>pgvector</h2>
+                <p>pgvector 是 PostgreSQL 的向量扩展。如果团队已经大量使用 PostgreSQL，那么用它来统一结构化数据和向量数据会很方便。</p>
+                <p><strong>优点：</strong>和现有数据库体系集成自然，开发门槛低。<br>
+                <strong>缺点：</strong>在超大规模和高性能近邻检索场景下，通常不如专门的向量数据库灵活。</p>
+
+                <h2>Weaviate</h2>
+                <p>Weaviate 是较成熟的向量数据库方案，强调面向应用层的使用体验，支持 schema、过滤、混合检索和模块化扩展。</p>
+                <p><strong>优点：</strong>功能较完整，适合快速搭建应用。<br>
+                <strong>缺点：</strong>学习和运维成本仍然高于简单库方案。</p>
+
+                <h2>怎么选</h2>
+                <ul>
+                  <li>如果是本地实验或研究：优先考虑 FAISS</li>
+                  <li>如果要做正式生产系统：可以看 Milvus 或 Weaviate</li>
+                  <li>如果想基于现有 PostgreSQL 快速接入：pgvector 很合适</li>
+                </ul>
+
+                <h2>总结</h2>
+                <p>没有绝对最好的方案，只有更适合当前团队阶段的方案。选型时要综合考虑数据规模、性能要求、运维能力以及现有技术栈。</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <aside id="sidebar">
+          <div class="widget-wrap">
+            <h3 class="widget-title">相关文章</h3>
+            <div class="widget">
+              <ul class="learning-nav-list">
+                <li><a href="/2026/05/07/what-is-vector-search-engine/">什么是向量检索引擎</a></li>
+                <li><a href="/2026/05/07/vector-search-core-pipeline/">向量检索的核心流程</a></li>
+                <li><a href="/2026/05/07/vector-database-comparison/">常见向量数据库对比</a></li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer id="footer">
+        <div class="outer">
+          <div id="footer-info" class="inner">
+            &copy; 2026 IcedSakana<br>
+            Powered by GitHub Pages
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <nav id="mobile-nav">
+      <a href="/" class="mobile-nav-link">首页</a>
+      <a href="/archives" class="mobile-nav-link">归档</a>
+      <a href="/categories" class="mobile-nav-link">专栏</a>
+      <a href="/tags" class="mobile-nav-link">标签</a>
+      <a href="/about" class="mobile-nav-link">关于</a>
+    </nav>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
